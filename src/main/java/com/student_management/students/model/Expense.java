@@ -19,10 +19,10 @@ public class Expense {
     private Long id;
 
     private double amount;
-    private String category;
     private String description;
     private LocalDate date;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }
