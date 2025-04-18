@@ -1,5 +1,6 @@
 package com.student_management.students.util;
 
+import com.student_management.students.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
