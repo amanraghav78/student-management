@@ -1,5 +1,6 @@
 package com.student_management.students.service;
 
+import com.student_management.students.dto.MonthlyReport;
 import com.student_management.students.model.Expense;
 import com.student_management.students.model.User;
 import com.student_management.students.repository.ExpenseRepository;
@@ -24,5 +25,9 @@ public class ExpenseService {
 
     public void deleteById(Long id){
         expenseRepository.deleteById(id);
+    }
+
+    public List<MonthlyReport> getMonthlyReport(User user, int year){
+        return expenseRepository.getMonthlyReportByYear(user, year);
     }
 }

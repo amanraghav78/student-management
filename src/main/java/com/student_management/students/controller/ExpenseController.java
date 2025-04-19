@@ -1,5 +1,6 @@
 package com.student_management.students.controller;
 
+import com.student_management.students.dto.MonthlyReport;
 import com.student_management.students.model.Expense;
 import com.student_management.students.model.User;
 import com.student_management.students.repository.ExpenseRepository;
@@ -38,6 +39,12 @@ public class ExpenseController {
     public ResponseEntity<String> delete(@PathVariable Long id){
         expenseService.deleteById(id);
         return ResponseEntity.ok("Expense deleted");
+    }
+
+    @GetMapping("/monthly-report")
+    public ResponseEntity<List<MonthlyReport>> getMonthlyReport(@RequestParam int year, Authentication auth){
+        User user = userRespository.findsByUsername(auth.getName()).orElseThrow();
+        return ResponseEntity.ok(expenseService.getMonthlyReport(user, year));
     }
 
 
