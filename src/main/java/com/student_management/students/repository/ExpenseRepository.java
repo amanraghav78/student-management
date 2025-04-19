@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
@@ -17,5 +18,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
             "GROUP BY FUNCTION('TO_CHAR', e.date, 'Month'), FUNCTION('MONTH', e.date) " +
             "ORDER BY FUNCTION('MONTH', e.date)")
     List<MonthlyReport> getMonthlyReportByYear(@Param("user") User user, @Param("year") int year);
+
+    List<Expense> findByUserAndDateBetween(User user, LocalDate start, LocalDate end);
 
 }

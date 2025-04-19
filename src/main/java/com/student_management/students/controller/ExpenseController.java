@@ -7,6 +7,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.student_management.students.dto.MonthlyReport;
+import com.student_management.students.dto.SuggestionDTO;
 import com.student_management.students.model.Expense;
 import com.student_management.students.model.User;
 import com.student_management.students.repository.ExpenseRepository;
@@ -79,6 +80,12 @@ public class ExpenseController {
 
         writer.flush();
         writer.close();
+    }
+
+    @GetMapping("/ai-suggestions")
+    public ResponseEntity<List<SuggestionDTO>> getAISuggestions(Authentication auth){
+        User user = userRespository.findsByUsername(auth.getName()).orElseThrow();
+        return ResponseEntity.ok(expenseService.getAISuggestions(user));
     }
 
     @GetMapping("/exports/pdf")
