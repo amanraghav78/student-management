@@ -22,6 +22,9 @@ public class Expense {
     private String description;
     private LocalDate date;
 
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
